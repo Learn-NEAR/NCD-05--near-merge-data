@@ -1,7 +1,7 @@
 <div align="center">
-  <h1><code>near-rust-intro</code></h1>
+  <h1><code>near-merge-data</code></h1>
   <p>
-    <strong><a href="https://docs.near.org/docs/tutorials/contracts/intro-to-rust">An Introduction to Rust Smart Contracts</strong>
+    <strong>Implementation payable check data (imitation via sort) on NEAR Protocol</strong>
   </p>
 </div>
 
