@@ -23,8 +23,8 @@
 accountId=ilyar.testnet
 contractName="merge-data.ilyar.testnet"
 near --accountId $accountId --amount 0.25 call $contractName merge '{"data": [[102, 111], [98, 97, 114]]}'
-ear --accountId $accountId --amount 0.25 call $contractName merge '{"data": [[102, 111], [98, 97, 114]], "sort": true}'
-ear --accountId $accountId --amount 0.25 call $contractName merge '{"data": [[102, 111], [98, 97, 114]], "sort": false}'
+near --accountId $accountId --amount 0.25 call $contractName merge '{"data": [[102, 111], [98, 97, 114]], "sort": true}'
+near --accountId $accountId --amount 0.25 call $contractName merge '{"data": [[102, 111], [98, 97, 114]], "sort": false}'
 ```
 
 ## Develop
@@ -65,19 +65,7 @@ near delete $contractName $accountId
 near clean
 ```
 
-## Deploy test
-
-```shell
-accountId=ilyar.testnet
-make build
-near dev-deploy
-contractName=$(cat neardev/dev-account)
-near state $contractName
-near delete $contractName $accountId
-near clean
-```
-
-## Deploy test
+## Deploy
 
 ```shell
 make qa
