@@ -15,11 +15,16 @@ audit-fix:
 audit:
 	cargo audit
 
-test-contract: out/main.wasm
-	cargo test --all
+test-contract-integration: out/main.wasm
+	cargo test --test integration
 
 test-contract-unit:
 	cargo test --lib
+
+test-contract:\
+test-contract-integration \
+test-contract-unit
+
 
 test:\
 test-contract
@@ -45,7 +50,7 @@ check:
 out/main.wasm:
 	cargo build --target wasm32-unknown-unknown --release
 	@mkdir -p out
-	@cp target/wasm32-unknown-unknown/release/intro.wasm out/main.wasm
+	@cp target/wasm32-unknown-unknown/release/merge_data.wasm out/main.wasm
 	@du -b out/main.wasm
 	@sha256sum out/main.wasm
 

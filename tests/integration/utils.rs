@@ -4,6 +4,7 @@ near_sdk_sim::lazy_static_include::lazy_static_include_bytes! {
 
 use near_sdk_sim::init_simulator;
 use near_sdk_sim::to_yocto;
+use near_sdk_sim::ExecutionResult;
 use near_sdk_sim::UserAccount;
 use near_sdk_sim::STORAGE_AMOUNT;
 
@@ -25,4 +26,24 @@ pub fn init() -> (UserAccount, UserAccount, UserAccount) {
     );
 
     (root, contract, alice)
+}
+
+pub fn print_burnt(result: &ExecutionResult) {
+    println!(
+        "burnt tokens: {:.05}Ⓝ gas: {:.02} TeraGas",
+        (result.tokens_burnt()) as f64 / 1e24,
+        (result.gas_burnt()) as f64 / 1e12,
+    );
+}
+
+pub fn to_gas(tera_gas: &str) -> u64 {
+    let part: Vec<_> = tera_gas.split('.').collect();
+    let number = part[0].parse::<u64>().unwrap() * u64::pow(10, 12);
+    if part.len() > 1 {
+        let power = part[1].len() as u32;
+        let mantissa = part[1].parse::<u64>().unwrap() * u64::pow(10, 12 - power);
+        number + mantissa
+    } else {
+        number
+    }
 }
